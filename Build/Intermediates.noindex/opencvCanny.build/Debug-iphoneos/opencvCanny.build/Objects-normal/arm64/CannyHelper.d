@@ -1,0 +1,35 @@
+dependencies: \
+  /Users/liyan/Desktop/playground/opencv/opencvCanny/opencvCanny/CannyHelper.mm \
+  ../opencvCanny/opencvCanny/CannyHelper.h \
+  ../opencv2.framework/Headers/core.hpp \
+  ../opencv2.framework/Headers/core/cvdef.h \
+  ../opencv2.framework/Headers/core/hal/interface.h \
+  ../opencv2.framework/Headers/core/cv_cpu_dispatch.h \
+  ../opencv2.framework/Headers/core/version.hpp \
+  ../opencv2.framework/Headers/core/base.hpp \
+  ../opencv2.framework/Headers/opencv_modules.hpp \
+  ../opencv2.framework/Headers/core/cvstd.hpp \
+  ../opencv2.framework/Headers/core/ptr.inl.hpp \
+  ../opencv2.framework/Headers/core/neon_utils.hpp \
+  ../opencv2.framework/Headers/core/vsx_utils.hpp \
+  ../opencv2.framework/Headers/core/traits.hpp \
+  ../opencv2.framework/Headers/core/matx.hpp \
+  ../opencv2.framework/Headers/core/saturate.hpp \
+  ../opencv2.framework/Headers/core/fast_math.hpp \
+  ../opencv2.framework/Headers/core/types.hpp \
+  ../opencv2.framework/Headers/core/mat.hpp \
+  ../opencv2.framework/Headers/core/bufferpool.hpp \
+  ../opencv2.framework/Headers/core/mat.inl.hpp \
+  ../opencv2.framework/Headers/core/persistence.hpp \
+  ../opencv2.framework/Headers/core/operations.hpp \
+  ../opencv2.framework/Headers/core/cvstd.inl.hpp \
+  ../opencv2.framework/Headers/core/utility.hpp \
+  ../opencv2.framework/Headers/core/core_c.h \
+  ../opencv2.framework/Headers/core/types_c.h \
+  ../opencv2.framework/Headers/core/optim.hpp \
+  ../opencv2.framework/Headers/core/ovx.hpp \
+  ../opencv2.framework/Headers/photo.hpp \
+  ../opencv2.framework/Headers/imgproc.hpp \
+  ../opencv2.framework/Headers/imgproc/imgproc_c.h \
+  ../opencv2.framework/Headers/imgproc/types_c.h \
+  ../opencv2.framework/Headers/photo/photo_c.h
