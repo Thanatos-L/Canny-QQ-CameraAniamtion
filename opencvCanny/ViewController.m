@@ -92,29 +92,15 @@
 
 - (void)setupEdgeView {
     self.edgeImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-//    self.edgeImageView.alpha = 0.7;
     self.edgeImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.edgeImageView];
-
-//    [self.view insertSubview:self.edgeImageView aboveSubview:self.view];
-    UIColor *color1 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0];
-    UIColor *color2 = [UIColor colorWithRed:(55/255.0)  green:(244/255.0)  blue:(0/255.0)  alpha:0.7];
-    UIColor *color3 = [UIColor colorWithRed:(123/255.0)  green:(123/255.0)  blue:(132/255.0)  alpha:1];
-    NSArray *colors = [NSArray arrayWithObjects:(id)color1.CGColor, color2.CGColor, color3.CGColor,nil];
-    NSArray *locations = [NSArray arrayWithObjects:@0.0,@0.1,@1.0, nil];
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [gradientLayer setColors:colors];
-    gradientLayer.locations = locations;
-//    [self.edgeImageView.layer addSublayer:gradientLayer];
-    
     [self animationEdgeImageView];
 }
 
 - (void)animationEdgeImageView {
     
     UIColor *color1 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0];
-    UIColor *color2 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.8];
+    UIColor *color2 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:1];
     UIColor *color3 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:1];
     NSArray *colors = [NSArray arrayWithObjects:(id)color1.CGColor, color2.CGColor, color3.CGColor,nil];
     NSArray *locations = [NSArray arrayWithObjects:@0.0,@0.5,@1.0, nil];

@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) float lowThreshold;
 
 - (UIImage *)processImage:(UIImage *)image;
-- (UIImage *)processSampleBuffer:(CMSampleBufferRef)buffer;
 - (void)setupBackground:(UIImage *)image;
 @end
 

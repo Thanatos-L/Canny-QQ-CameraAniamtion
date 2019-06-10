@@ -20,7 +20,6 @@
 @implementation CannyHelper
 
 - (void)setupBackground:(UIImage *)image {
-//    UIImage *bg = [self imageWithImage:image scaledToSize:[UIScreen mainScreen].bounds.size];
     UIImageToMat(image, _backgroundMat, 1);
 }
 
@@ -62,7 +61,6 @@
     cv::Canny(src_gray, edgeMat, self.lowThreshold, self.lowThreshold * 3);
     
     cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(130,180,180,255));;
-//    cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(255,255,255,255));;
     std::vector<std::vector<cv::Point>> contours;
     std::vector<cv::Vec4i> hierarchy;
     cv::findContours(edgeMat, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
@@ -71,14 +69,7 @@
     UIImage *result;
     if (hierarchy.size() > 0) {
         cv::Scalar color2(155, 240, 250, 255);
-//        for( ; idx >= 0; idx = hierarchy[idx][0] )
-//        {
-//            cv::Scalar color( rand()&255, rand()&255, rand()&255 );
-////            cv::drawContours( dst, contours, idx, color2, -1, cv::LINE_AA, CV_FILLED, 8, hierarchy );
-//            cv::drawContours( dst, contours, idx, color2, 1, cv::LINE_AA, hierarchy, INT_MAX, cv::Point(0,0));
-//        }
         cv::drawContours( src, contours, -1, color2, -1, cv::LINE_4, hierarchy, INT_MAX, cv::Point(0,0));
-//        cv::drawContours( im, contours, -1, cv::Scalar(255,255,255,255), CV_FILLED, 8, hierarchy );
         result = MatToUIImage(src);
     } else {
         result = nil;
@@ -87,55 +78,6 @@
     return result;
 }
 
-
-- (UIImage *)processSampleBuffer:(CMSampleBufferRef)buffer {
-//    cv::Mat im = [self convertSampleBufferToMat:buffer];
-//
-//    if(im.empty()) {
-//        return nil;
-//    }
-//    cv::Mat src = im.clone();
-//    cv::Mat src_gray;
-//    if (src.channels()==1)
-//    {
-//        src_gray = src;
-//    }
-//    if (src.channels() == 3)
-//    {
-//        cvtColor(src, src_gray, CV_BGR2GRAY);
-//    }
-//    if (src.channels() == 4)
-//    {
-//        cvtColor(src, src_gray, CV_BGRA2GRAY);
-//    }
-//    UIImage *origin = MatToUIImage(src);
-//    cv::Mat edgeMat;
-//    cv::GaussianBlur(src_gray, src_gray, cv::Size(5,5), cv::BORDER_DEFAULT);
-//    cv::Canny(src_gray, edgeMat, 10, 100);
-//
-//    cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(0,0,0,255));;
-//    std::vector<std::vector<cv::Point>> contours;
-//    std::vector<cv::Vec4i> hierarchy;
-//    cv::findContours(edgeMat, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
-//
-//    int idx = 0;
-//    UIImage *result;
-//    if (hierarchy.size() > 0) {
-////        for( ; idx >= 0; idx = hierarchy[idx][0] )
-////        {
-////            cv::Scalar color( rand()&255, rand()&255, rand()&255 );
-////            cv::Scalar color2(255, 255, 255, 255);
-////            cv::drawContours( im, contours, idx, color2, CV_FILLED, 8, hierarchy );
-////        }
-//                cv::drawContours( im, contours, -1, cv::Scalar(255,255,255,255), CV_FILLED, 8, hierarchy );
-//        result = MatToUIImage(im);
-//    } else {
-//        result = nil;
-//    }
-//
-//    return result;
-    return nil;
-}
 
 CV_EXPORTS UIImage* MatToUIImage(const cv::Mat& image);
 CV_EXPORTS void UIImageToMat(const UIImage* image, cv::Mat& m, bool alphaExist);
