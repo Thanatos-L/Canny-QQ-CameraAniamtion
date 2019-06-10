@@ -17,6 +17,7 @@
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 @property (nonatomic, strong) UIImageView *edgeImageView;
 @property (nonatomic, strong) CannyHelper *cannyHelper;
+@property (nonatomic, strong) UIImage *background;
 @end
 
 @implementation ViewController
@@ -26,7 +27,8 @@
     [self setupCamera];
     self.cannyHelper = [CannyHelper new];
     self.cannyHelper.lowThreshold = 60;
-    
+    self.background = [UIImage imageNamed:@"background"];
+    [self.cannyHelper setupBackground:_background];
     // Do any additional setup after loading the view.
 }
 
@@ -59,11 +61,16 @@
     UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
 //    UIImage *newImage = [self.cannyHelper processSampleBuffer:sampleBuffer];
     UIImage *newImage = [self.cannyHelper processImage:image];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.edgeImageView.image = newImage;
     });
 }
 
+
+//- (UIImage *)assembleBackgroundImageWith:(UIImage *)image {
+//    UIGraphicsBeginImageContext(image.size);
+//}
 
 
 - (void)setupSlider {
@@ -88,22 +95,46 @@
 //    self.edgeImageView.alpha = 0.7;
     self.edgeImageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.edgeImageView];
-    [self animationEdgeImageView];
+
 //    [self.view insertSubview:self.edgeImageView aboveSubview:self.view];
+    UIColor *color1 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0];
+    UIColor *color2 = [UIColor colorWithRed:(55/255.0)  green:(244/255.0)  blue:(0/255.0)  alpha:0.7];
+    UIColor *color3 = [UIColor colorWithRed:(123/255.0)  green:(123/255.0)  blue:(132/255.0)  alpha:1];
+    NSArray *colors = [NSArray arrayWithObjects:(id)color1.CGColor, color2.CGColor, color3.CGColor,nil];
+    NSArray *locations = [NSArray arrayWithObjects:@0.0,@0.1,@1.0, nil];
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [gradientLayer setColors:colors];
+    gradientLayer.locations = locations;
+//    [self.edgeImageView.layer addSublayer:gradientLayer];
+    
+    [self animationEdgeImageView];
 }
 
 - (void)animationEdgeImageView {
     
     UIColor *color1 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0];
-    UIColor *color2 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:1];
-    NSArray *colors = [NSArray arrayWithObjects:(id)color1.CGColor, color2.CGColor,nil];
-    NSArray *locations = [NSArray arrayWithObjects:@0.0,@1.0, nil];
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = CGRectMake(0, -self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
-    [gradientLayer setColors:colors];
-    gradientLayer.locations = locations;
+    UIColor *color2 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:0.8];
+    UIColor *color3 = [UIColor colorWithRed:(0/255.0)  green:(0/255.0)  blue:(0/255.0)  alpha:1];
+    NSArray *colors = [NSArray arrayWithObjects:(id)color1.CGColor, color2.CGColor, color3.CGColor,nil];
+    NSArray *locations = [NSArray arrayWithObjects:@0.0,@0.5,@1.0, nil];
+    CAGradientLayer *gradientAnimLayer = [CAGradientLayer layer];
+    gradientAnimLayer.frame = CGRectMake(0, -self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+    [gradientAnimLayer setColors:colors];
+    gradientAnimLayer.locations = locations;
     
-    self.edgeImageView.layer.mask = gradientLayer;
+    UIColor *color11 = [UIColor colorWithRed:(255/255.0)  green:(255/255.0)  blue:(255/255.0)  alpha:0];
+    UIColor *color22 = [UIColor colorWithRed:(155/255.0)  green:(240/255.0)  blue:(240/255.0)  alpha:1];
+    NSArray *colors2 = [NSArray arrayWithObjects:(id)color11.CGColor, color22.CGColor,nil];
+    NSArray *locations2 = [NSArray arrayWithObjects:@0.7,@1.0, nil];
+    CAGradientLayer *gradientColorLayer = [CAGradientLayer layer];
+    gradientColorLayer.frame = CGRectMake(0,  -self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+    [gradientColorLayer setColors:colors2];
+    gradientColorLayer.locations = locations2;
+    
+    self.edgeImageView.layer.mask = gradientAnimLayer;
+    [self.edgeImageView.layer addSublayer:gradientColorLayer];
+    
     CGPoint originPosition = CGPointMake(self.view.frame.size.width / 2, -self.view.frame.size.height/1.5);
     CGPoint finalPosition = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height * 1.5);
     CABasicAnimation *maskLayerAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -113,7 +144,8 @@
     maskLayerAnimation.duration = 4.0;
     maskLayerAnimation.repeatCount = HUGE_VALF;
     maskLayerAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [gradientLayer addAnimation:maskLayerAnimation forKey:@"maskLayerAnimation"];
+    [gradientAnimLayer addAnimation:maskLayerAnimation forKey:@"maskLayerAnimation"];
+    [gradientColorLayer addAnimation:maskLayerAnimation forKey:@"maskLayerAnimation"];
 }
 
 -(void)showImage {

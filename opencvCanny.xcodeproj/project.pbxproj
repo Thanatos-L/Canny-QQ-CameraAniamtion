@@ -22,6 +22,7 @@
 		BA0DD1C12293FBFA007F1437 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DD1C02293FBFA007F1437 /* AssetsLibrary.framework */; };
 		BA0DD1C32293FC5D007F1437 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0DD1C22293FC5D007F1437 /* libz.tbd */; };
 		BA0DD1C62293FCAF007F1437 /* LyCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0DD1C52293FCAF007F1437 /* LyCameraController.m */; };
+		BA66C1B522A773B1008EDC82 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = BA66C1B422A773B0008EDC82 /* background.png */; };
 		BAE6372E2293F3E600207BAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE6372D2293F3E600207BAD /* AppDelegate.m */; };
 		BAE637312293F3E600207BAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE637302293F3E600207BAD /* ViewController.m */; };
 		BAE637342293F3E600207BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAE637322293F3E600207BAD /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		BA0DD1C22293FC5D007F1437 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		BA0DD1C42293FCAF007F1437 /* LyCameraController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LyCameraController.h; sourceTree = "<group>"; };
 		BA0DD1C52293FCAF007F1437 /* LyCameraController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LyCameraController.m; sourceTree = "<group>"; };
+		BA66C1B422A773B0008EDC82 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		BAE637292293F3E600207BAD /* opencvCanny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = opencvCanny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE6372C2293F3E600207BAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BAE6372D2293F3E600207BAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				BAE637452293F4BD00207BAD /* CannyHelper.mm */,
 				BA0DD1C42293FCAF007F1437 /* LyCameraController.h */,
 				BA0DD1C52293FCAF007F1437 /* LyCameraController.m */,
+				BA66C1B422A773B0008EDC82 /* background.png */,
 				BAE637322293F3E600207BAD /* Main.storyboard */,
 				BAE637352293F3E700207BAD /* Assets.xcassets */,
 				BAE637372293F3E700207BAD /* LaunchScreen.storyboard */,
@@ -206,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAE637392293F3E700207BAD /* LaunchScreen.storyboard in Resources */,
+				BA66C1B522A773B1008EDC82 /* background.png in Resources */,
 				BAE637482293F4DD00207BAD /* origin.png in Resources */,
 				BAE637362293F3E700207BAD /* Assets.xcassets in Resources */,
 				BAE637342293F3E600207BAD /* Main.storyboard in Resources */,

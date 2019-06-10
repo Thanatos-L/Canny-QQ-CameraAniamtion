@@ -36,9 +36,13 @@
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
 		</data>
+		<key>background.png</key>
+		<data>
+		Xts7YgStnjb7kPSo74+tq9+QXBw=
+		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		RU5CLFnnwUxTDQTSoFay1FKORWM=
+		AxqdMGiNxb2sULtK552uV5OwZPs=
 		</data>
 		<key>origin.png</key>
 		<data>
@@ -89,11 +93,18 @@
 			DNviClzoC20UP4HHiWZYv7cbg4jV+NX98/mzpmO6SeU=
 			</data>
 		</dict>
+		<key>background.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fkUKnau8jdYDS9YpkmbLEjtrFJxLyG2AvuhqmRfVn7w=
+			</data>
+		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7TDenOqwuubc7xZKf/NOic9hJ1KrWd21iAc24jZPDJ4=
+			5IUQjp1/N441aGfGd465EzHHOKC19sxXcl2+b45z9Tk=
 			</data>
 		</dict>
 		<key>origin.png</key>

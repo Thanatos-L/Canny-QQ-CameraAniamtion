@@ -13,10 +13,31 @@
 #import <ImageIO/ImageIO.h>
 #include <opencv2/photo.hpp>
 #include <map>
+@interface CannyHelper()
+@property (nonatomic, assign) cv::Mat backgroundMat;
+@end
+
 @implementation CannyHelper
+
+- (void)setupBackground:(UIImage *)image {
+//    UIImage *bg = [self imageWithImage:image scaledToSize:[UIScreen mainScreen].bounds.size];
+    UIImageToMat(image, _backgroundMat, 1);
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 - (UIImage *)processImage:(UIImage *)image {
     cv::Mat im;
+//    cv::Mat bg = _backgroundMat.clone();
     UIImageToMat(image, im, 1);
     if(im.empty()) {
         return nil;
@@ -41,6 +62,7 @@
     cv::Canny(src_gray, edgeMat, self.lowThreshold, self.lowThreshold * 3);
     
     cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(130,180,180,255));;
+//    cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(255,255,255,255));;
     std::vector<std::vector<cv::Point>> contours;
     std::vector<cv::Vec4i> hierarchy;
     cv::findContours(edgeMat, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
@@ -55,9 +77,9 @@
 ////            cv::drawContours( dst, contours, idx, color2, -1, cv::LINE_AA, CV_FILLED, 8, hierarchy );
 //            cv::drawContours( dst, contours, idx, color2, 1, cv::LINE_AA, hierarchy, INT_MAX, cv::Point(0,0));
 //        }
-        cv::drawContours( dst, contours, -1, color2, -1, cv::LINE_4, hierarchy, INT_MAX, cv::Point(0,0));
+        cv::drawContours( src, contours, -1, color2, -1, cv::LINE_4, hierarchy, INT_MAX, cv::Point(0,0));
 //        cv::drawContours( im, contours, -1, cv::Scalar(255,255,255,255), CV_FILLED, 8, hierarchy );
-        result = MatToUIImage(dst);
+        result = MatToUIImage(src);
     } else {
         result = nil;
     }

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (UIImage *)processImage:(UIImage *)image;
 - (UIImage *)processSampleBuffer:(CMSampleBufferRef)buffer;
-
+- (void)setupBackground:(UIImage *)image;
 @end
 
 NS_ASSUME_NONNULL_END
