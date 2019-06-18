@@ -60,17 +60,16 @@
     
     cv::Canny(src_gray, edgeMat, self.lowThreshold, self.lowThreshold * 3);
     
-    cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(130,180,180,255));;
+    cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(0,0,0,0));;
     std::vector<std::vector<cv::Point>> contours;
     std::vector<cv::Vec4i> hierarchy;
     cv::findContours(edgeMat, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
     
-    int idx = 0;
     UIImage *result;
     if (hierarchy.size() > 0) {
         cv::Scalar color2(155, 240, 250, 255);
-        cv::drawContours( src, contours, -1, color2, -1, cv::LINE_4, hierarchy, INT_MAX, cv::Point(0,0));
-        result = MatToUIImage(src);
+        cv::drawContours( dst, contours, -1, color2, -1, cv::LINE_4, hierarchy, INT_MAX, cv::Point(0,0));
+        result = MatToUIImage(dst);
     } else {
         result = nil;
     }
