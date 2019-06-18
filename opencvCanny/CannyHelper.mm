@@ -35,14 +35,17 @@
 }
 
 - (UIImage *)processImage:(UIImage *)image {
+    // 传入uiimage
     cv::Mat im;
-//    cv::Mat bg = _backgroundMat.clone();
+
     UIImageToMat(image, im, 1);
+    // uiimage转mat
     if(im.empty()) {
         return nil;
     }
     cv::Mat src = im.clone();
     cv::Mat src_gray;
+    // 原图变成灰度图
     if (src.channels()==1)
     {
         src_gray = src;
@@ -56,20 +59,23 @@
         cvtColor(src, src_gray, CV_BGRA2GRAY);
     }
     cv::Mat edgeMat;
+    // 对原图进行高斯模糊
     cv::GaussianBlur(src_gray, src_gray, cv::Size(3,3), cv::BORDER_DEFAULT);
-    
+    // 使用Canny进行边缘提取，提取出来的图像放在edgeMat, 后面连个参数是低+高阈值，影响到提取出来的边缘是多是少
     cv::Canny(src_gray, edgeMat, self.lowThreshold, self.lowThreshold * 3);
-    
-    cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(0,0,0,0));;
+//    // 生成一张透明的mat
+//    cv::Mat dst = cv::Mat(src_gray.size(),CV_8UC4,cv::Scalar(0,0,0,0));;
     std::vector<std::vector<cv::Point>> contours;
     std::vector<cv::Vec4i> hierarchy;
+    // 将拿到的边缘提取成点，再做自定义绘制
     cv::findContours(edgeMat, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
-    
     UIImage *result;
+    // 将提取出来的边缘绘制在原图上，并且设置绘制的颜色，最后转成uiimage，贴合到相机的previewlayer上，就能看到提取绘制的边缘了
+    // 并且因为是
     if (hierarchy.size() > 0) {
         cv::Scalar color2(155, 240, 250, 255);
-        cv::drawContours( dst, contours, -1, color2, -1, cv::LINE_4, hierarchy, INT_MAX, cv::Point(0,0));
-        result = MatToUIImage(dst);
+        cv::drawContours( src, contours, -1, color2, -1, cv::LINE_4, hierarchy, INT_MAX, cv::Point(0,0));
+        result = MatToUIImage(src);
     } else {
         result = nil;
     }
